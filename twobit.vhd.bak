@@ -1,0 +1,25 @@
+--Muhammed Halim Güle?en
+--348398
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity twobit is
+  Port( a : in std_logic_vector(1 downto 0);
+    b: in std_logic_vector(1 downto 0);
+    s: out std_logic_vector(1 downto 0);
+    cin:in std_logic);
+    
+  end twobit;
+  
+  
+  architecture behv of twobit is
+    signal cout: std_logic_vector(1 downto 0) := "00";
+    begin
+      
+      s(0) <= a(0) XOR b(0) XOR cin;
+      cout(0) <= (a(0) AND b(0)) OR (cin AND a(0)) OR ( cin AND b(0));
+      s(1) <= a(1) XOR b(1) XOR cout(0);
+        cout(1) <= (a(1) AND b(1)) OR (cout(0) AND a(1)) OR ( cout(0) AND b(1));
+        
+      end behv;
